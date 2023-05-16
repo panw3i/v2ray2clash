@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  subweb:
+    build: .
+    image: subweb:latest
+    container_name: subweb
+    ports:
+      - "20080:80"
+    depends_on:
+      - subconverter
+
+  subconverter:
+    build:
+      context: .
+      dockerfile: Dockerfile-subconverter
+    container_name: subconverter
+    ports:
+      - "25500:25500"
